@@ -18,11 +18,7 @@ class Date_Management:
 
         return dataframe
 
-    def timestamp_to_date_column(dataframe, column):
-        col_datatype_dict = dataframe.dtypes.to_dict()
-        datetime_columns_list = {i for i in col_datatype_dict
-                                 if col_datatype_dict[i] == 'datetime64[ns]'}
-        for col in datetime_columns_list:
-            dataframe[col] = dataframe[col].dt.date
+    def timestamp_to_date_column(column, dataframe):
+        dataframe[column] = dataframe[column].dt.date
 
         return dataframe
