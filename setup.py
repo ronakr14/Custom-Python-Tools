@@ -1,28 +1,23 @@
-# Always prefer setuptools over distutils
 from setuptools import setup
+from pathlib import Path
 
-# To use a consistent encoding
-from codecs import open
-from os import path
-
-# The directory containing this file
-HERE = path.abspath(path.dirname(__file__))
+# Get the directory containing this file
+HERE = Path(__file__).resolve().parent
 
 # Get the long description from the README file
-with open(path.join(HERE, 'README.md'), encoding='utf-8') as f:
+with open(HERE / 'README.md', encoding='utf-8') as f:
     long_description = f.read()
 
 # This call to setup() does all the work
 setup(
     name="RR-Custom-Python-Library",
-    version="0.0.3",
+    version="0.0.4",
     description="Frequently used python methods/libraries.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    # url="https://medium-multiply.readthedocs.io/",
     author="Ronak Rathore",
     author_email="ronak.rathore05@gmail.com",
-    license="GNU GENERAL PUBLIC LICENSE",
+    license="GPLv3+",
     classifiers=[
         "Intended Audience :: Developers",
         "Programming Language :: Python",
