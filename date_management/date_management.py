@@ -1,5 +1,6 @@
 import pandas as pd
 
+
 class Date_Management:
     """
     Class containing methods to cover frequent date operations.
