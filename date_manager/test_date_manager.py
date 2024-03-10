@@ -1,10 +1,10 @@
 import pandas as pd
 import unittest
 
-from date_management import DateManagement
+from date_manager import DateManager
 
 
-class TestDateManagement(unittest.TestCase):
+class TestDateManager(unittest.TestCase):
 
     def setUp(self) -> None:
         """
@@ -41,7 +41,7 @@ class TestDateManagement(unittest.TestCase):
         })
         expected_df['timestamp_col_1'] = expected_df['timestamp_col_1'].dt.date
         expected_df['timestamp_col_2'] = expected_df['timestamp_col_2'].dt.date
-        result_df = DateManagement.timestamp_to_date(self.df)
+        result_df = DateManager.timestamp_to_date(self.df)
         pd.testing.assert_frame_equal(result_df, expected_df)
 
     def test_timestamp_to_date_column(self) -> None:
@@ -66,7 +66,7 @@ class TestDateManagement(unittest.TestCase):
             'other_col': [1, 2, 3, 4, 5]
         })
         expected_df['timestamp_col_1'] = expected_df['timestamp_col_1'].dt.date
-        result_df = DateManagement.timestamp_to_date_column('timestamp_col_1', self.df)
+        result_df = DateManager.timestamp_to_date_column('timestamp_col_1', self.df)
         pd.testing.assert_frame_equal(result_df, expected_df)
 
 

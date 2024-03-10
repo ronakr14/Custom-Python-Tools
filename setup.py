@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent"
     ],
-    packages=["date_management"],
+    packages=["date_manager", "log_manager"],
     include_package_data=True,
     install_requires=["pandas"]
 )

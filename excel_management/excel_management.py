@@ -1,7 +1,7 @@
 from pathlib import Path
 import pandas as pd
 import openpyxl
-from date_management import Date_Management
+from date_manager import DateManager
 
 
 class Excel_Management:
@@ -23,7 +23,7 @@ class Excel_Management:
         """
         try:
             dataframe = pd.read_excel(Path(Workbook), sheet_name=Sheet)
-            dataframe = Date_Management.timestamp_to_date(dataframe)
+            dataframe = DateManager.timestamp_to_date(dataframe)
         except Exception as e:
             print(f"Error reading Excel file: {e}")
             dataframe = pd.DataFrame()

@@ -1,7 +1,7 @@
 import pandas as pd
 
 
-class DateManagement:
+class DateManager:
 
     @staticmethod
     def timestamp_to_date(dataframe: pd.DataFrame) -> pd.DataFrame:
@@ -15,8 +15,12 @@ class DateManagement:
             pd.DataFrame: The input dataframe with the datetime columns converted to date type.
         """
         datetime_columns = [col for col, dtype in dataframe.dtypes.items() if dtype == 'datetime64[ns]']
+        # DateManager.log.info('Datetime columns successfully fetched from dataframe.')
+        # DateManager.log.info(f"Datetime columns: {datetime_columns}")
         for col in datetime_columns:
             dataframe[col] = dataframe[col].dt.date
+            # DateManager.log.info(f"Datetime column:{col} converted.")
+
         return dataframe
 
     @staticmethod
