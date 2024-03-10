@@ -11,7 +11,7 @@ with open(HERE / 'README.md', encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="RR-Custom-Python-Tools",
-    version="0.0.6",
+    version="0.0.7",
     description="Frequently used python methods/libraries.",
     long_description=long_description,
     long_description_content_type="text/markdown",
