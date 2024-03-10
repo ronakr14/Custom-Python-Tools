@@ -7,7 +7,7 @@ Custom library for frequent used methods/libraries.
 ## License
     GPLv3+
 
-## DateManagement
+## DateManager
 
 ### def timestamp_to_date(dataframe: pd.DataFrame) -> pd.DataFrame:
     Static Method
