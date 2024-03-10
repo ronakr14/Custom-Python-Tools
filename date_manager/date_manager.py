@@ -17,11 +17,11 @@ class DateManager:
             pd.DataFrame: The input dataframe with the datetime columns converted to date type.
         """
         datetime_columns = [col for col, dtype in dataframe.dtypes.items() if dtype == 'datetime64[ns]']
-        # DateManager.log.info('Datetime columns successfully fetched from dataframe.')
-        # DateManager.log.info(f"Datetime columns: {datetime_columns}")
+        DateManager.log.info('Datetime columns successfully fetched from dataframe.')
+        DateManager.log.info(f"Datetime columns: {datetime_columns}")
         for col in datetime_columns:
             dataframe[col] = dataframe[col].dt.date
-            # DateManager.log.info(f"Datetime column:{col} converted.")
+            DateManager.log.info(f"Datetime column:{col} converted.")
 
         return dataframe
 
@@ -38,4 +38,5 @@ class DateManager:
         pd.DataFrame: The input dataframe with the datetime column converted to date type.
         """
         dataframe[column] = dataframe[column].dt.date
+        DateManager.log.info(f"Datetime column:{column} converted.")
         return dataframe
