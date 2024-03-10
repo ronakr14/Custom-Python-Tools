@@ -2,19 +2,18 @@ import logging
 
 
 class LogManager:
-    def __init__(self, log_file: str = 'Custom-Python_Tools.log', log_level: int = logging.DEBUG, log_name: str = 'LogManager'):
+    def __init__(self, log_file: str = './Custom-Python_Tools.log', log_level: int = logging.DEBUG, log_name: str = 'LogManager'):
         """
         Initialize the LogManager class.
 
         Args:
             log_file (str, optional): The name of the log file. Defaults to 'Custom-Python_Tools.log'.
             log_level (int, optional): The logging level. Defaults to logging.DEBUG.
+            log_name (int, optional): The logging name. Defaults to LogManager.
         """
         self.log_file = log_file
         self.log_level = log_level
         self.logger = logging.getLogger(log_name)
-        print("*****************")
-        print(self.logger)
         self.logger.setLevel(self.log_level)
 
         formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
