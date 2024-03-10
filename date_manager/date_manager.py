@@ -3,7 +3,7 @@ from log_manager.log_manager import LogManager
 
 
 class DateManager:
-    log = LogManager()
+    log = LogManager(log_name='DateManager')
 
     @staticmethod
     def timestamp_to_date(dataframe: pd.DataFrame) -> pd.DataFrame:
