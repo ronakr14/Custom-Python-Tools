@@ -1,7 +1,7 @@
 from date_manager import DateManager
-from excel_management import Excel_Management
-from log_management import LogManager
+from excel_manager import ExcelManager
+from log_manager import LogManager
 
 Date_Manager = DateManager()
-Excel_Manager = Excel_Management()
+Excel_Manager = ExcelManager()
 Log_Manager = LogManager()

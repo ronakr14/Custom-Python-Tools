@@ -4,7 +4,7 @@ import openpyxl
 from date_manager import DateManager
 
 
-class Excel_Management:
+class ExcelManager:
     """
     Class containing methods to manage Excel files.
     """

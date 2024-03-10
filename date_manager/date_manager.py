@@ -1,8 +1,9 @@
 import pandas as pd
-from log_management.log_manager import LogManager
+from log_manager.log_manager import LogManager
 
 
 class DateManager:
+    log = LogManager()
 
     @staticmethod
     def timestamp_to_date(dataframe: pd.DataFrame) -> pd.DataFrame:
