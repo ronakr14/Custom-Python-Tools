@@ -1,4 +1,5 @@
 import pandas as pd
+from log_management.log_manager import LogManager
 
 
 class DateManager:
