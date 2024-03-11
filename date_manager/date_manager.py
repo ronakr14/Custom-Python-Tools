@@ -50,6 +50,7 @@ class DateManager:
                     f"The input dataframe does not contain the specified datetime column: {column}"
                 )
             dataframe[column] = dataframe[column].dt.date
+            self.log.info(f"Datetime column:{column} converted.")
         except ValueError as e:
             self.log.error(e)
         return dataframe
