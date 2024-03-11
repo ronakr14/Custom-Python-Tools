@@ -11,7 +11,7 @@ with open(HERE / 'README.md', encoding='utf-8') as f:
 # This call to setup() does all the work
 setup(
     name="RR-Custom-Python-Tools",
-    version="0.0.9",
+    version="0.0.10",
     description="Frequently used python methods/libraries.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -28,7 +28,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Operating System :: OS Independent"
     ],
-    packages=["date_manager", "log_manager"],
+    packages=["date_manager", "log_manager", "excel_manager"],
     include_package_data=True,
     install_requires=["pandas"]
 )
