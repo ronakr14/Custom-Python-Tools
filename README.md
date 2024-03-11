@@ -11,8 +11,11 @@ ___
 `To use the DateManager class, you need to import it and create an instance:`
 ```python
 from date_manager.date_manager import DateManager
-date_manager = DateManager()
+date_manager = DateManager(log_file='abc.log')
 ```
+- Arguments:
+    - log_file (str): log_file path. Defaults to './Custom-Python_Tools.log'
+
 ### `timestamp_to_date(dataframe: pd.DataFrame) -> pd.DataFrame`
 Converts datetime columns in a DataFrame to date type.
 - Arguments:
@@ -62,8 +65,10 @@ converted_df = date_manager.timestamp_to_date_column('datetime_column', df)
 
 ```python
 from excel_manager.excel_manager import ExcelManager
-excel_manager = ExcelManager()
+excel_manager = ExcelManager(log_file='abc.log')
 ```
+- Arguments:
+    - log_file (str): log_file path. Defaults to './Custom-Python_Tools.log'
 ### `get_dataframe(self, workbook: str, sheet: str) -> pd.DataFrame`
 Retrieve a pandas dataframe from an Excel workbook.
 - Args:

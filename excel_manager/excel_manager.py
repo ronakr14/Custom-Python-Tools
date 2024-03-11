@@ -9,9 +9,8 @@ import inspect
 class ExcelManager:
     def __init__(self, log_file: str = './Custom-Python_Tools.log') -> None:
         """
-        Initialize the ExcelManager class.
-        Returns:
-            None: Returns nothing.
+        Args:
+            log_file (str, optional): The path to the log file. Defaults to './Custom-Python_Tools.log'.
         """
         self.log = LogManager(log_name='ExcelManager', log_file=log_file)
         self.obj_date = DateManager(log_file=log_file)

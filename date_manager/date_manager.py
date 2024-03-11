@@ -5,7 +5,8 @@ from log_manager.log_manager import LogManager
 class DateManager:
     def __init__(self, log_file: str = './Custom-Python_Tools.log'):
         """
-        Initialize the DateManager class.
+        Args:
+            log_file (str, optional): The path to the log file. Defaults to './Custom-Python_Tools.log'.
         """
         self.log = LogManager(log_name='DateManager', log_file=log_file)
 
