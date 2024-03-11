@@ -3,11 +3,11 @@ from log_manager.log_manager import LogManager
 
 
 class DateManager:
-    def __init__(self):
+    def __init__(self, log_file: str = './Custom-Python_Tools.log'):
         """
         Initialize the DateManager class.
         """
-        self.log = LogManager(log_name='DateManager')
+        self.log = LogManager(log_name='DateManager', log_file=log_file)
 
     def timestamp_to_date(self, dataframe: pd.DataFrame) -> pd.DataFrame:
         """

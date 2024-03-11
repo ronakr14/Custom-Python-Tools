@@ -7,14 +7,14 @@ import inspect
 
 
 class ExcelManager:
-    def __init__(self) -> None:
+    def __init__(self, log_file: str = './Custom-Python_Tools.log') -> None:
         """
         Initialize the ExcelManager class.
         Returns:
             None: Returns nothing.
         """
-        self.log = LogManager(log_name='ExcelManager')
-        self.obj_date = DateManager()
+        self.log = LogManager(log_name='ExcelManager', log_file=log_file)
+        self.obj_date = DateManager(log_file=log_file)
 
     def get_dataframe(self, workbook: str, sheet: str) -> pd.DataFrame:
         """
