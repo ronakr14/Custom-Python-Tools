@@ -3,4 +3,5 @@ demo.py
 main.py
 *.log
 *.ipynb
-test.xlsx
+test*.xlsx
+test_*.py

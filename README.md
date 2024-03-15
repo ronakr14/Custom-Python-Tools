@@ -14,7 +14,7 @@ from date_manager.date_manager import DateManager
 date_manager = DateManager(log_file='abc.log')
 ```
 - Arguments:
-    - log_file (str): log_file path. Defaults to './Custom-Python_Tools.log'
+    - log_file (str): log_file path. Defaults to './Custom-Python_Tools.log'. Custom path can be provided.
 
 ### `timestamp_to_date(dataframe: pd.DataFrame) -> pd.DataFrame`
 Converts datetime columns in a DataFrame to date type.
@@ -214,6 +214,43 @@ workbook = "test.xlsx"
 sheet = "Sheet1"
 excel_manager.modify_sheet_protection(workbook, sheet, False)
 ```
+---
+---
+# *MailManager*
+`To use the MailManager class, you need to import it and create an instance:`
+
+```python
+from mail_manager.mail_manager import MailManager
+mail_manager = MailManager(subject='abc', receiver ='abc@xyz.com', body='abc', log_file='abc.log')
+```
+- Args:
+    - subject (str): The subject of the email.
+    - receiver (Union[list, str]): A list of email addresses or a single email address.
+    - body (str): The body of the email.
+    - service (str, optional): The service to be used for sending the email. Defaults to 'windows'. Options-windows/smtp
+    - log_file (str, optional): The path of the log file. Defaults to './Custom-Python_Tools.log'.
+
+### `send_mail( self, copy_receiver: Union[list, str, None], attachment: Union[list, str, None], sender: str = None, sender_credentials: str = None,) -> bool:`
+```python
+receiver = ['abc@xyx.com', 'mnp@xyx.com']
+attachment = ['abc.txt', 'mnp.xlsx']
+sender = "abc@mnp.com"
+sender_credentials = "abcd1234"
+
+result = mail_manager.send_mail(sender=sender, sender_credentials=sender_credentials, copy_receiver=copy_receiver, attachment=attachment)
+```
+This function sends an email using the selected service.
+- Args:
+    - copy_receiver (Union[list, str, None]): A list of email addresses or a single email address to be added as a carbon copy (CC) of the email.
+    - attachment (Union[list, str, None]): A list of email addresses or a single email address to be attached to the email.
+    - sender (str, optional): The email address of the sender. If not specified, the default sender set in the system will be used.
+    - sender_credentials (str, optional): The password or API key of the sender. If not specified, the default credentials set in the system will be used.
+- Returns:
+    - bool: A boolean value indicating whether the email was sent successfully or not.
+- Raises:
+    - ValueError: If the selected service is not supported.
+
+
 ---
 ---
 

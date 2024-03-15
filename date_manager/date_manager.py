@@ -9,6 +9,7 @@ class DateManager:
             log_file (str, optional): The path to the log file. Defaults to './Custom-Python_Tools.log'.
         """
         self.log = LogManager(log_name='DateManager', log_file=log_file)
+        self.log.info("DateManager initialized.")
 
     def timestamp_to_date(self, dataframe: pd.DataFrame) -> pd.DataFrame:
         """

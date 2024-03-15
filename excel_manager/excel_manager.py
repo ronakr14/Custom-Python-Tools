@@ -14,6 +14,7 @@ class ExcelManager:
         """
         self.log = LogManager(log_name='ExcelManager', log_file=log_file)
         self.obj_date = DateManager(log_file=log_file)
+        self.log.info("ExcelManager Initialized.")
 
     def get_dataframe(self, workbook: str, sheet: str) -> pd.DataFrame:
         """
