@@ -6,3 +6,4 @@ main.py
 test*.xlsx
 test_*.py
 venv
+site
