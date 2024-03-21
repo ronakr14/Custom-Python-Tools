@@ -1,12 +1,3 @@
 pandas
 setuptools
 pathlib
-openpyxl
-pathlib
-emails
-os
-pywin32
-typing
-smtplib
-inspect
-loggings
