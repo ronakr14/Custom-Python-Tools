@@ -1,3 +1,23 @@
+# mail_manager/mail_manager.py
+
+"""This module allows the user to make mail operations.
+
+Examples:
+    >>> from mail_manager.mail_manager import MailManager
+    >>> mail_manager = MailManager(subject='abc', receiver ='abc@xyz.com', body='abc', log_file='abc.log')
+
+    >>> receiver = ['abc@xyx.com', 'mnp@xyx.com']
+    >>> attachment = ['abc.txt', 'mnp.xlsx']
+    >>> sender = "abc@mnp.com"
+    >>> sender_credentials = "abcd1234"
+    >>> result = mail_manager.send_mail(sender=sender, sender_credentials=sender_credentials, copy_receiver=copy_receiver, attachment=attachment)
+
+The module contains the following methods:
+
+- `__init__(subject, receiver, body, log_file)` - creates the instance of the class.
+- `send_mail(sender, sender_credentials, copy_receiver, attachment)` - sends the email.
+"""
+
 from email import encoders
 from email.mime.base import MIMEBase
 import inspect
@@ -11,14 +31,8 @@ from email.mime.multipart import MIMEMultipart
 
 
 class MailManager:
-    """
-    A class for managing email operations.
-    Args:
-        subject (str): The subject of the email.
-        receiver (Union[list, str]): A list of email addresses or a single email address.
-        body (str): The body of the email.
-        service (str, optional): The service to be used for sending the email. Defaults to 'windows'.
-        log_file (str, optional): The path of the log file. Defaults to './Custom-Python_Tools.log'.
+    """A class for managing email operations.
+
     Attributes:
         log (LogManager): A LogManager instance for logging.
         service (str): The service to be used for sending the email.
@@ -30,6 +44,14 @@ class MailManager:
     def __init__(
             self, subject: str, receiver: Union[list, str], body: str,
             service: str = 'windows', log_file: str = './Custom-Python_Tools.log') -> None:
+        """
+        Args:
+            subject: Email Subject
+            receiver: Email Receiver
+            body: Email Body
+            service: Service to use for sending the email.
+            log_file: The path to the log file.
+        """
         self.log = LogManager(log_name='MailManager', log_file=log_file)
         self.service = service
         self.receiver = receiver
@@ -37,12 +59,13 @@ class MailManager:
         self.body = body
         self.log.info("MailManager initialized.")
 
-    def copy_receiver_modify(self, copy_receiver: Union[list, str, None]) -> Union[str, None]:
-        """
-        This function takes in a list of email addresses as input and returns a string containing all the email addresses separated by a semicolon.
+    def _copy_receiver_modify(self, copy_receiver: Union[list, str, None]) -> Union[str, None]:
+        """This function takes in a list of email addresses as input and returns a string containing all the email addresses separated by a semicolon.
         If the input is not a list, it returns the input unchanged.
+        
         Args:
-            copy_receiver (Union[list, str, None]): A list of email addresses or a single email address.
+            copy_receiver: A list of email addresses or a single email address.
+        
         Returns:
             Union[str, None]: A list of email addresses separated by a semicolon or the input unchanged.
         """
@@ -58,12 +81,13 @@ class MailManager:
             self.log.info("None received in copy_receiver.")
             return None
 
-    def attachment_modify(self, attachment: Union[list, str, None]) -> Union[list, None]:
-        """
-        This function takes in a list of email addresses as input and returns a string containing all the email addresses separated by a semicolon.
+    def _attachment_modify(self, attachment: Union[list, str, None]) -> Union[list, None]:
+        """This function takes in a list of email addresses as input and returns a string containing all the email addresses separated by a semicolon.
         If the input is not a list, it returns the input unchanged.
+        
         Args:
-            attachment (Union[list, str, None]): A list of email addresses or a single email address.
+            attachment: A list of email addresses or a single email address.
+        
         Returns:
             Union[list, str]: A list of email addresses separated by a semicolon or the input unchanged.
         """
@@ -79,12 +103,13 @@ class MailManager:
             self.log.info("None received in attachment.")
             return None
 
-    def receiver_modify(self, receiver: Union[list, str]) -> str:
-        """
-        This function takes in a list of email addresses as input and returns a string containing all the email addresses separated by a semicolon.
+    def _receiver_modify(self, receiver: Union[list, str]) -> str:
+        """This function takes in a list of email addresses as input and returns a string containing all the email addresses separated by a semicolon.
         If the input is not a list, it returns the input unchanged.
+        
         Args:
-            receiver (Union[list, str]): A list of email addresses or a single email address.
+            receiver: A list of email addresses or a single email address.
+        
         Returns:
             str: A list of email addresses separated by a semicolon or the input unchanged.
         """
@@ -100,15 +125,17 @@ class MailManager:
             self, copy_receiver: Union[list, str, None],
             attachment: Union[list, str, None], sender: str = None,
             sender_credentials: str = None,) -> bool:
-        """
-        This function sends an email using the selected service.
+        """This function sends an email using the selected service.
+
         Args:
-            copy_receiver (Union[list, str, None]): A list of email addresses or a single email address to be added as a carbon copy (CC) of the email.
-            attachment (Union[list, str, None]): A list of email addresses or a single email address to be attached to the email.
-            sender (str, optional): The email address of the sender. If not specified, the default sender set in the system will be used.
-            sender_credentials (str, optional): The password or API key of the sender. If not specified, the default credentials set in the system will be used.
+            copy_receiver: A list of email addresses or a single email address to be added as a carbon copy (CC) of the email.
+            attachment: A list of email addresses or a single email address to be attached to the email.
+            sender: The email address of the sender. If not specified, the default sender set in the system will be used.
+            sender_credentials: The password or API key of the sender. If not specified, the default credentials set in the system will be used.
+        
         Returns:
             bool: A boolean value indicating whether the email was sent successfully or not.
+        
         Raises:
             ValueError: If the selected service is not supported.
         """
@@ -118,17 +145,18 @@ class MailManager:
         elif self.service == "smtp":
             return self.smtp_service(sender, sender_credentials, copy_receiver, attachment)
 
-    def windows_service(
+    def _windows_service(
             self, copy_receiver: Union[list, str, None],
             attachment: Union[list, str, None]):
-        """
-        This function is used to send an email using the outlook application.
+        """This function is used to send an email using the outlook application.
+
         Args:
-            self (EmailService): An instance of the EmailService class.
-            copy_receiver (Union[list, str, None]): A list of email addresses to be copied on the email.
-            attachment (Union[list, str, None]): A list of file paths or email addresses of the attachments to be added to the email.
+            copy_receiver: A list of email addresses to be copied on the email.
+            attachment: A list of file paths or email addresses of the attachments to be added to the email.
+
         Returns:
             bool: A boolean value indicating whether the email was sent successfully or not.
+
         Raises:
             Exception: An exception is raised if there is an error in sending the email.
         """
@@ -155,11 +183,12 @@ class MailManager:
             self.log.error(f"Undefined Error: {e}.")
             return False
 
-    def smtp_server(self, sender: str) -> str:
-        """
-        This function determines the SMTP server to use based on the email sender's domain.
+    def _smtp_server(self, sender: str) -> str:
+        """This function determines the SMTP server to use based on the email sender's domain.
+
         Args:
-            sender (str): The email sender's domain.
+            sender: The email sender's domain.
+
         Returns:
             str: The SMTP server to use.
         """
@@ -171,21 +200,21 @@ class MailManager:
             self.log.info("smtp_server=smtp-mail.outlook.com")
             return 'smtp-mail.outlook.com'
 
-    def smtp_service(
+    def _smtp_service(
             self, sender: str, sender_credentials: str, copy_receiver: Union[list, str, None],
             attachment: Union[list, str, None]):
-        """
-        self.log.info(f"{inspect.stack()[0][3]}:\ncopy_receiver={copy_receiver}.")
-        A function to send an email through SMTP.
+        """A function to send an email through SMTP.
+
         Args:
-            sender (str): The email address of the sender
-            sender_credentials (str): The password of the sender
-            copy_receiver (Union[list, str, None]): A list of email addresses to be copied, or a single email address
-            attachment (Union[list, str, None]): A list of file paths to be attached, or a single file path
+            sender: The email address of the sender
+            sender_credentials: The password of the sender
+            copy_receiver: A list of email addresses to be copied, or a single email address
+            attachment: A list of file paths to be attached, or a single file path
+
         Returns:
             bool: A boolean indicating whether the email was sent successfully or not
         """
-        self.log.info(f"{inspect.stack()[0][3]}:\sender={sender}, attachment={attachment}, copy_receiver={copy_receiver}.")
+        self.log.info(f"{inspect.stack()[0][3]}:\nsender={sender}, attachment={attachment}, copy_receiver={copy_receiver}.")
 
         receiver = self.receiver_modify(self.receiver)
         copy_receiver = self.copy_receiver_modify(copy_receiver)

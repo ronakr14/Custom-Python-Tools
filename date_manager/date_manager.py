@@ -1,3 +1,26 @@
+# date_manager/date_manager.py
+
+"""This module allows the user to make datetime operations.
+
+Examples:
+    >>> from date_manager.date_manager import DateManager
+    >>> date_manager = DateManager(log_file='abc.log')
+
+    >>> data = {'datetime_column': ['2022-01-01', '2022-01-02', '2022-01-03']}
+    >>> df = pd.DataFrame(data)
+    >>> df['datetime_column'] = pd.to_datetime(df['datetime_column'])
+
+    >>> converted_df = date_manager.timestamp_to_date(df)
+
+    >>> converted_df = date_manager.timestamp_to_date_column('datetime_column', df)
+
+The module contains the following methods:
+
+- `__init__(log_file)` - creates the instance of the class.
+- `timestamp_to_date(dataframe)` - returns the dataframe with all datetime column modified to date datatype.
+- `timestamp_to_date_column(column, dataframe)` - returns the dataframe with specific datetime column to date datatype.
+"""
+
 import pandas as pd
 from log_manager.log_manager import LogManager
 
@@ -6,7 +29,7 @@ class DateManager:
     def __init__(self, log_file: str = './Custom-Python_Tools.log'):
         """
         Args:
-            log_file (str, optional): The path to the log file. Defaults to './Custom-Python_Tools.log'.
+            log_file: The path to the log file.
         """
         self.log = LogManager(log_name='DateManager', log_file=log_file)
         self.log.info("DateManager initialized.")
@@ -15,7 +38,7 @@ class DateManager:
         """ Convert datetime columns in a dataframe to date type.
 
         Args:
-            dataframe (pd.DataFrame): The dataframe containing the datetime columns.
+            dataframe: The dataframe containing the datetime columns.
 
         Returns:
             pd.DataFrame: The input dataframe with the datetime columns converted to date type.
@@ -34,18 +57,17 @@ class DateManager:
         return dataframe
 
     def timestamp_to_date_column(self, column: str, dataframe: pd.DataFrame) -> pd.DataFrame:
-        """
-        Convert a datetime column in a dataframe to date type.
+        """Convert a datetime column in a dataframe to date type.
+
         Args:
-            column (str): The name of the datetime column to convert.
-            dataframe (pd.DataFrame): The dataframe containing the datetime column.
+            column: The name of the datetime column to convert.
+            dataframe: The dataframe containing the datetime column.
 
         Returns:
             pd.DataFrame: The input dataframe with the datetime column converted to date type.
 
         Raises:
             ValueError: If the input dataframe does not contain the specified datetime column.
-
         """
         try:
             if column not in dataframe.columns:

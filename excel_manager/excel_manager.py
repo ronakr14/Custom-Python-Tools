@@ -1,3 +1,62 @@
+# excel_manager/excel_manager.py
+
+"""This module allows the user to make excel operations.
+
+Examples:
+    >>> from excel_manager.excel_manager import ExcelManager
+    >>> excel_manager = ExcelManager(log_file='abc.log')
+
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> dataframe = excel_manager.get_dataframe(workbook, sheet)
+
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> excel_manager.delete_sheet(workbook, sheet)
+
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> excel_manager.create_sheet(workbook, sheet)
+
+    >>> import pandas as pd
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> dataframe = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
+    >>> excel_manager.overwrite_sheet(workbook, sheet, dataframe)
+
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> excel_manager.reposition_sheet(workbook, sheet)
+
+    >>> import pandas as pd
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> dataframe = pd.DataFrame({"a": [1, 2, 3], "b": [4, 5, 6]})
+    >>> excel_manager.append_dataframe(workbook, sheet, dataframe)
+
+    >>> # to set the protection, 'abc' is password.
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> excel_manager.modify_sheet_protection(workbook, sheet, True, 'abc')
+
+    >>> # to remove the protection.
+    >>> workbook = "test.xlsx"
+    >>> sheet = "Sheet1"
+    >>> excel_manager.modify_sheet_protection(workbook, sheet, False)
+
+The module contains the following functions:
+
+- `__init__(log_file)` - creates the instance of the class.
+- `get_dataframe(workbook, sheet)` - returns the dataframe from excel workbook.
+- `delete_sheet(workbook, sheet)` - deletes the sheet from excel workbook.
+- `create_sheet(workbook, sheet)` - creates a new sheet in excel workbook.
+- `overwrite_sheet(workbook, sheet, dataframe)` - overwrites the content of the sheet.
+- `reposition_sheet(workbook, sheet)` - reposition the sheet in excel workbook.
+- `append_dataframe(workbook, sheet, dataframe)` - append the dataframe to the content in excel sheet.
+- `modify_sheet_protection(workbook, sheet, True, 'abc')` - adds or removes the protection from sheet in excel workbook.
+
+"""
+
 from pathlib import Path
 import pandas as pd
 import openpyxl
@@ -10,20 +69,22 @@ class ExcelManager:
     def __init__(self, log_file: str = './Custom-Python_Tools.log') -> None:
         """
         Args:
-            log_file (str, optional): The path to the log file. Defaults to './Custom-Python_Tools.log'.
+            log_file: The path to the log file.
         """
         self.log = LogManager(log_name='ExcelManager', log_file=log_file)
         self.obj_date = DateManager(log_file=log_file)
         self.log.info("ExcelManager Initialized.")
 
     def get_dataframe(self, workbook: str, sheet: str) -> pd.DataFrame:
-        """
-        Retrieve a pandas dataframe from an Excel workbook.
+        """Retrieve a pandas dataframe from an Excel workbook.
+
         Args:
-            workbook (str): The path to the Excel workbook.
-            sheet (str): The name of the sheet containing the data.
+            workbook: The path to the Excel workbook.
+            sheet: The name of the sheet containing the data.
+
         Returns:
             pd.DataFrame: The contents of the specified sheet as a pandas dataframe.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             Exception: If an unexpected error occurs.
@@ -47,13 +108,15 @@ class ExcelManager:
             return pd.DataFrame()
 
     def delete_sheet(self, workbook: str, sheet: str) -> None:
-        """
-        Delete a sheet from an Excel workbook.
+        """Delete a sheet from an Excel workbook.
+
         Args:
-            workbook (str): The path to the Excel workbook.
-            sheet (str): The name of the sheet to be deleted.
+            workbook: The path to the Excel workbook.
+            sheet: The name of the sheet to be deleted.
+
         Returns:
             None: Returns nothing.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             ValueError: If the specified sheet does not exist in the workbook.
@@ -78,15 +141,17 @@ class ExcelManager:
             self.log.error(f"Undefined Error: {e}.")
 
     def create_sheet(self, workbook: str, sheet: str) -> None:
-        """
-        Create a new sheet in an Excel workbook.
+        """Create a new sheet in an Excel workbook.
+
         Args:
-            workbook (str): The path to the Excel workbook.
-            sheet (str): The name of the sheet to be created.
+            workbook: The path to the Excel workbook.
+            sheet: The name of the sheet to be created.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             PermissionError: If the user does not have permission to write to the specified workbook.
             Exception: If an unexpected error occurs.
+
         Returns:
             None: Returns nothing.
         """
@@ -106,14 +171,16 @@ class ExcelManager:
             self.log.error(f"Undefined Error: {e}.")
 
     def overwrite_sheet(self, workbook: str, sheet: str, dataframe: pd.DataFrame) -> None:
-        """
-        Overwrite the contents of an Excel sheet with a new dataframe.
+        """Overwrite the contents of an Excel sheet with a new dataframe.
+
         Args:
-            workbook (str): The path to the Excel workbook.
-            sheet (str): The name of the sheet to be overwritten.
-            dataframe (pd.DataFrame): The new contents of the sheet as a pandas dataframe.
+            workbook: The path to the Excel workbook.
+            sheet: The name of the sheet to be overwritten.
+            dataframe: The new contents of the sheet as a pandas dataframe.
+
         Returns:
             None: Returns nothing.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             PermissionError: If the user does not have permission to write to the specified workbook.
@@ -141,16 +208,18 @@ class ExcelManager:
             self.log.error(f"Undefined Error: {e}.")
 
     def reposition_sheet(self, workbook: str, sheet: str) -> None:
-        """
-        Moves a sheet at the start in the workbook and saves the changes.
+        """Moves a sheet at the start in the workbook and saves the changes.
+
         Args:
-            workbook (str): The path to the Excel workbook.
-            sheet (str): The name of the sheet to be moved.
+            workbook: The path to the Excel workbook.
+            sheet: The name of the sheet to be moved.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             PermissionError: If the user does not have permission to write to the specified workbook.
             ValueError: If the specified sheet does not exist in the workbook.
             Exception: If an unexpected error occurs.
+
         Returns:
             None: Returns nothing.
         """
@@ -173,17 +242,19 @@ class ExcelManager:
             self.log.error(f"Undefined Error: {e}.")
 
     def append_dataframe(self, workbook: str, sheet: str, dataframe: pd.DataFrame, password: str = None) -> None:
-        """
-        Appends a pandas dataframe to an Excel sheet.
+        """Appends a pandas dataframe to an Excel sheet.
+
         Args:
-            workbook (str): The path to the Excel workbook.
-            sheet (str): The name of the sheet to which the dataframe will be appended.
-            dataframe (pd.DataFrame): The pandas dataframe to be appended to the sheet.
-            password (str, optional): The password for the Excel workbook, if it is protected. Defaults to None.
+            workbook: The path to the Excel workbook.
+            sheet: The name of the sheet to which the dataframe will be appended.
+            dataframe: The pandas dataframe to be appended to the sheet.
+            password: The password for the Excel workbook, if it is protected.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             PermissionError: If the user does not have permission to write to the specified workbook.
             Exception: If an unexpected error occurs.
+
         Returns:
             None: Returns nothing.
         """
@@ -212,16 +283,18 @@ class ExcelManager:
             self.log.error(f"Undefined Error: {e}.")
 
     def modify_sheet_protection(self, filepath: str, sheetname: str, enable_protection: bool, password: str = None) -> None:
-        """
-        Modifies the protection of an Excel sheet.
+        """Modifies the protection of an Excel sheet.
+
         Args:
-            filepath (str): The path to the Excel workbook.
-            sheetname (str): The name of the sheet to be protected.
-            enable_protection (bool): A boolean value indicating whether to enable or disable protection.
-            password (str, optional): The password for the Excel workbook, if it is protected. Defaults to None.
+            filepath: The path to the Excel workbook.
+            sheetname: The name of the sheet to be protected.
+            enable_protection: A boolean value indicating whether to enable or disable protection.
+            password: The password for the Excel workbook, if it is protected.
+
         Raises:
             FileNotFoundError: If the specified workbook cannot be found.
             PermissionError: If the user does not have permission to write to the specified workbook.
+            
         Returns:
             None: Returns nothing.
         """

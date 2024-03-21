@@ -1,6 +1,6 @@
-# calculator/__init__.py
+# date_manager/__init__.py
 
-"""Do date operations using functions provided.
+"""Frequent date operations using methods provided.
 
 Modules exported by this package:
 
