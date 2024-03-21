@@ -26,6 +26,42 @@ theme:
       primary: teal
       accent: lime
 
+plugins:
+  - mkdocstrings
+
+nav:
+  - Home: index.md  # Example homepage
+
+  # Include all folders and files in the docs directory
+  - Date Manager:
+      - Date Manager/index.md
+      - Date Manager/tutorials.md
+      - Date Manager/how-to-guides.md
+      - Date Manager/reference.md
+      - Date Manager/explanation.md
+      - Date Manager/DateManager.md
+  - Excel Manager:
+      - Excel Manager/index.md
+      - Excel Manager/tutorials.md
+      - Excel Manager/how-to-guides.md
+      - Excel Manager/reference.md
+      - Excel Manager/explanation.md
+      - Excel Manager/ExcelManager.md
+  - Mail Manager:
+      - Mail Manager/index.md
+      - Mail Manager/tutorials.md
+      - Mail Manager/how-to-guides.md
+      - Mail Manager/reference.md
+      - Mail Manager/explanation.md
+      - Mail Manager/MailManager.md
+  - Log Manager:
+      - Log Manager/index.md
+      - Log Manager/tutorials.md
+      - Log Manager/how-to-guides.md
+      - Log Manager/reference.md
+      - Log Manager/explanation.md
+      - Log Manager/LogManager.md
+
 extra:
   social:
     - icon: fontawesome/brands/github-alt

@@ -12,10 +12,11 @@ class DateManager:
         self.log.info("DateManager initialized.")
 
     def timestamp_to_date(self, dataframe: pd.DataFrame) -> pd.DataFrame:
-        """
-        Convert datetime columns in a dataframe to date type.
+        """ Convert datetime columns in a dataframe to date type.
+
         Args:
             dataframe (pd.DataFrame): The dataframe containing the datetime columns.
+
         Returns:
             pd.DataFrame: The input dataframe with the datetime columns converted to date type.
         """

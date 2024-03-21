@@ -1,12 +1,17 @@
-# Homepage
+# Welcome to MkDocs
 
-Here you can find all the documentation/ notes of all my work.
+For full documentation visit [mkdocs.org](https://www.mkdocs.org).
 
-## Contents
+## Commands
 
-|Page Name|Content|
-|:-------:|:-----:|
-|[Custom-Python-Library](https://ronakr14.github.io/Documentation/Custom-Python-Library/)|Custom methods integrating famous and frequently used libraries.|
-|[DateManager](https://ronakr14.github.io/Documentation/DateManager/)|Custom methods used for datetime operations|
-|[ExcelManager](https://ronakr14.github.io/Documentation/ExcelManager/)|Custom methods for managing excel files.|
-|[LogManager](https://ronakr14.github.io/Documentation/LogManager/)|Custom methods for managing logs.|
+* `mkdocs new [dir-name]` - Create a new project.
+* `mkdocs serve` - Start the live-reloading docs server.
+* `mkdocs build` - Build the documentation site.
+* `mkdocs -h` - Print help message and exit.
+
+## Project layout
+
+    mkdocs.yml    # The configuration file.
+    docs/
+        index.md  # The documentation homepage.
+        ...       # Other markdown pages, images and other files.
